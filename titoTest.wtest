@@ -13,4 +13,45 @@ describe "Tests de Tito" {
     tito.consumir(10, whisky)
     assert.equals(10, tito.dosisConsumida())
   }
+
+    test "Tito consume un litro de licuado de frutas" {
+        licuadoDeFrutas.sumarNutrientes(manzana)
+        licuadoDeFrutas.sumarNutrientes(banana)
+
+        tito.consumir(1000, licuadoDeFrutas)
+
+        assert.equals(350, tito.velocidad())
+    }
+
+    test "Tito consume agua saborizada con whisky" {
+        aguaSaborizada.bebidaCombinada(whisky)
+
+        tito.consumir(10, aguaSaborizada)
+
+        assert.equals(
+            (1 + 0.9 ** 2.5) * 7,
+            tito.velocidad()
+        )
+    }
+
+    test "Tito consume un coctel de whisky y terere" {
+        coctel.agregarBebida(whisky)
+        coctel.agregarBebida(terere)
+
+        tito.consumir(10, coctel)
+
+        assert.equals(
+            (0.9 ** 5) * 1 * 7,
+            tito.velocidad()
+        )
+    }
+
+    test "Un coctel que tiene cianuro tiene rendimiento 0" {
+        coctel.agregarBebida(cianuro)
+        coctel.agregarBebida(whisky)
+
+        tito.consumir(10, coctel)
+
+        assert.equals(0, tito.velocidad())
+    }
 }
